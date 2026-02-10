@@ -221,13 +221,13 @@ nuclei -l nuclei-targets.jsonl -im jsonl -t ~/nuclei-templates/
 ```bash
 # Generate URLs for Dalfox
 npx speedcrawl -u https://target.com \
-  --formats json \
-  --json all-urls.json \
+  --formats har \
+  --har file.har \
   --pages 50 \
   --extract-secrets
 
 # Run Dalfox on discovered URLs
-dalfox file all-urls.json -o xss-results.txt
+dalfox file  file.har  --har  -o xss-results.txt
 ```
 
 ### 4. Corporate Network Testing

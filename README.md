@@ -441,23 +441,6 @@ npx speedcrawl -u $TARGET_URL \
   -v 1
 ```
 
-### Integration with Security Tools
-
-#### SQLMap
-```bash
-# Generate HTTP requests then test
-npx speedcrawl -u https://target.com --formats http
-for file in speedcrawl-output/*/http-requests/*.http; do
-    sqlmap -r "$file" --batch --level 3
-done
-```
-
-#### Burp Suite
-```bash
-# Import HAR file into Burp Suite
-npx speedcrawl -u https://target.com --formats har
-# Import: Proxy > HTTP history > Import
-```
 
 ---
 

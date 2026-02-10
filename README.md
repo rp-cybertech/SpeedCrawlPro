@@ -210,25 +210,13 @@ npx speedcrawl -u https://target.com \
   --pages 50
 
 # Run nuclei on generated targets
-nuclei -l nuclei-targets.jsonl -t ~/nuclei-templates/
+nuclei -l nuclei-targets.jsonl -im jsonl -t ~/nuclei-templates/
 ```
 
-### 3. Burp Suite Integration
 
-```bash
-# Generate HAR file for Burp Suite import
-npx speedcrawl -u https://target.com \
-  --formats har \
-  --har burp-import.har \
-  --submit-forms \
-  --extract-secrets \
-  --pages 30
-
-# Import into Burp Suite:
-# Proxy > HTTP history > Right-click > Import > burp-import.har
 ```
 
-### 4. Dalfox Integration (XSS Testing)
+### 3. Dalfox Integration (XSS Testing)
 
 ```bash
 # Generate URLs for Dalfox
@@ -242,7 +230,7 @@ npx speedcrawl -u https://target.com \
 dalfox file all-urls.json -o xss-results.txt
 ```
 
-### 5. Corporate Network Testing
+### 4. Corporate Network Testing
 
 ```bash
 # Behind corporate proxy

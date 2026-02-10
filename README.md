@@ -199,30 +199,50 @@ npx speedcrawl -u https://target.com \
   --request-delay 500
 ```
 
-### 2. API Endpoint Discovery
+### 2. Nuclei Integration
 
 ```bash
-# Focus on API discovery
-npx speedcrawl -u https://api.example.com \
-  --pages 50 \
-  --deep-js-analysis \
-  --blocked-extensions "jpg,png,gif,svg,ico,css,woff" \
-  --formats json,jsonl
+# Generate JSONL for nuclei scanning
+npx speedcrawl -u https://target.com \
+  --formats jsonl \
+  -j nuclei-targets.jsonl \
+  --extract-secrets \
+  --pages 50
+
+# Run nuclei on generated targets
+nuclei -l nuclei-targets.jsonl -t ~/nuclei-templates/
 ```
 
-### 3. Form Security Testing
+### 3. Burp Suite Integration
 
 ```bash
-# Test all forms on a site
-npx speedcrawl -u https://app.example.com \
+# Generate HAR file for Burp Suite import
+npx speedcrawl -u https://target.com \
+  --formats har \
+  --har burp-import.har \
   --submit-forms \
-  --use-faker \
-  --formats json,har \
-  --headful \
-  -v 2
+  --extract-secrets \
+  --pages 30
+
+# Import into Burp Suite:
+# Proxy > HTTP history > Right-click > Import > burp-import.har
 ```
 
-### 4. Corporate Network Testing
+### 4. Dalfox Integration (XSS Testing)
+
+```bash
+# Generate URLs for Dalfox
+npx speedcrawl -u https://target.com \
+  --formats json \
+  --json all-urls.json \
+  --pages 50 \
+  --extract-secrets
+
+# Run Dalfox on discovered URLs
+dalfox file all-urls.json -o xss-results.txt
+```
+
+### 5. Corporate Network Testing
 
 ```bash
 # Behind corporate proxy
@@ -278,6 +298,9 @@ npx speedcrawl -u https://example.com \
 |------|-------------|---------|
 | `--deep-js-analysis` | Enable JavaScript AST parsing | `false` |
 | `--extract-secrets` | Scan for secrets and API keys | `true` |
+| `-j, --jsonl <file>` | Custom JSONL output file path (for nuclei) | - |
+| `--har <file>` | Custom HAR output file path (for Burp Suite) | - |
+| `--json <file>` | Custom JSON output file path | - |
 
 ### Scope & Filtering
 

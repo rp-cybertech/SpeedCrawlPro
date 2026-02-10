@@ -329,9 +329,8 @@ function buildConfig(options, outputDir, inputData, fakerAvailable) {
     // Outputs
     formats: options.formats.split(',').map(f => f.trim()).filter(Boolean),
     jsonl: options.jsonl,
-    harFile: options.harFile,
-    jsonFile: options.jsonFile,
-    httpFile: options.httpFile,
+    harFile: options.har,
+    jsonFile: options.json,
 
     // List mode
     list: options.list,
@@ -524,10 +523,9 @@ async function main(deps = CoreDeps) {
       parseIntOption('verbose', CONSTANTS.MIN_VERBOSE, CONSTANTS.MAX_VERBOSE), 1)
     .option('-i, --input <file>', 'JSON file with form input data')
     .option('--formats <list>', 'Output formats: json,jsonl,har,http', 'json')
-    .option('-j, --jsonl <file>', 'Custom JSONL output file path')
-    .option('--har-file <file>', 'Custom HAR output file path')
-    .option('--json-file <file>', 'Custom JSON output file path')
-    .option('--http-file <file>', 'Custom HTTP requests output file path')
+    .option('-j, --jsonl <file>', 'Custom JSONL output file path (for nuclei)')
+    .option('--har <file>', 'Custom HAR output file path (for Burp Suite)')
+    .option('--json <file>', 'Custom JSON output file path')
     .option('-l, --list [file]', 'Read URLs from file or stdin (one per line) to crawl')
     .option('--show-urls', 'Display all found URLs after crawl', false)
     .option('--single-output', 'Save all results in single file when using list mode (no per-domain folders)', false)

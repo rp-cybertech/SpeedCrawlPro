@@ -208,9 +208,15 @@ npx speedcrawl -u https://target.com \
   -j nuclei-targets.jsonl \
   --extract-secrets \
   --pages 50
+npx speedcrawl -u http://testphp.vulnweb.com/   --formats jsonl   -j nuclei-targets.jsonl   --extract-secrets   --pages 50 -d 10 --threads 30 -v 2  --submit-forms --same-origin
+
+nuclei -l nuclei-targets.jsonl -im jsonl -t  ~/nuclei-templates/dast/
+<img width="1914" height="778" alt="image" src="https://github.com/user-attachments/assets/8bf720f4-cd87-4b1d-b15c-2725a0cdb76c" />
 
 # Run nuclei on generated targets
 nuclei -l nuclei-targets.jsonl -im jsonl -t ~/nuclei-templates/
+
+
 ```
 
 
@@ -220,14 +226,15 @@ nuclei -l nuclei-targets.jsonl -im jsonl -t ~/nuclei-templates/
 
 ```bash
 # Generate URLs for Dalfox
-npx speedcrawl -u https://target.com \
-  --formats har \
-  --har file.har \
-  --pages 50 \
-  --extract-secrets
+npx speedcrawl -u http://testphp.vulnweb.com/   --formats har    --har file.har    --extract-secrets   --pages 50 --threads 30 -v 2  --submit-forms --same-origin
+
+
 
 # Run Dalfox on discovered URLs
 dalfox file  file.har  --har  -o xss-results.txt
+
+<img width="1866" height="347" alt="image" src="https://github.com/user-attachments/assets/2d1ce2d5-3828-4999-9099-5dbbd4a4bacd" />
+
 ```
 
 ### 4. Corporate Network Testing

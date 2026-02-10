@@ -1,0 +1,73 @@
+{
+  "name": "speedcrawl-pro",
+  "version": "14.0.0",
+  "description": "Enterprise web security crawler with lightning-fast forms and built-in secret detection",
+  "main": "bin/speedcrawl.js",
+  "bin": {
+    "speedcrawl": "./bin/speedcrawl.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "node bin/speedcrawl.js",
+    "test": "node bin/speedcrawl.js -u http://testphp.vulnweb.com --submit-forms -v 2",
+    "test-forms": "node bin/speedcrawl.js -u http://testphp.vulnweb.com/guestbook.php --submit-forms --use-faker -v 2",
+    "test-secrets": "node bin/speedcrawl.js -u http://testphp.vulnweb.com --extract-secrets -v 2",
+    "install-browsers": "npx playwright install"
+  },
+  "keywords": [
+    "web-crawler",
+    "security",
+    "penetration-testing",
+    "form-automation",
+    "secret-detection",
+    "nuclei",
+    "playwright",
+    "lightning-fast"
+  ],
+  "author": "SpeedCrawl Team",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/parser": "^7.28.4",
+    "@babel/traverse": "^7.28.4",
+    "@faker-js/faker": "^8.3.1",
+    "acorn": "^8.15.0",
+    "acorn-walk": "^8.3.4",
+    "axios": "^1.12.2",
+    "bottleneck": "^2.19.5",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.1.2",
+    "cli-progress": "^3.12.0",
+    "commander": "^11.1.0",
+    "csv-parse": "^6.1.0",
+    "dotenv": "^17.2.3",
+    "esprima": "^4.0.1",
+    "fast-xml-parser": "^5.3.0",
+    "got": "^14.4.9",
+    "js-beautify": "^1.15.4",
+    "jsdom": "^27.0.0",
+    "mime-types": "^2.1.35",
+    "normalize-url": "^8.1.0",
+    "p-limit": "^4.0.0",
+    "p-queue": "^9.0.0",
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.1",
+    "playwright": "^1.40.0",
+    "playwright-extra": "^4.3.6",
+    "playwright-extra-plugin-stealth": "^0.0.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "tldts": "^7.0.16",
+    "tough-cookie": "^6.0.0",
+    "urlpattern-polyfill": "^10.1.0",
+    "user-agents": "^1.1.666",
+    "uuid": "^9.0.1",
+    "winston": "^3.18.3",
+    "yaml": "^2.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rp-cybertech/SpeedCrawlPro.git"
+  }
+}
